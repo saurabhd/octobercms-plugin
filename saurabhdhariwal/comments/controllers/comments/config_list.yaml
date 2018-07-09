@@ -1,0 +1,11 @@
+title: Comments
+modelClass: SaurabhDhariwal\Comments\Models\Comments
+list: $/saurabhdhariwal/comments/models/comments/columns.yaml
+recordUrl: 'saurabhdhariwal/comments/comments/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

@@ -1,0 +1,14 @@
+fields:
+    content:
+        label: 'saurabhdhariwal.comments::lang.comment.content'
+        size: small
+        oc.commentPosition: ''
+        span: left
+        type: richeditor
+    status:
+        label: 'saurabhdhariwal.comments::lang.comment.status'
+        oc.commentPosition: ''
+        nameFrom: name
+        descriptionFrom: description
+        span: left
+        type: dropdown

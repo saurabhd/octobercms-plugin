@@ -1,0 +1,37 @@
+fields:
+
+    allow_guest:
+        span: left
+        label: saurabhdhariwal.comments::lang.settings.allow_guest_label
+        commentAbove: saurabhdhariwal.comments::lang.settings.allow_guest_above
+        type: switch
+
+    status:
+        span: right
+        label: saurabhdhariwal.comments::lang.settings.status_label
+        commentAbove: saurabhdhariwal.comments::lang.settings.status_above
+        type: dropdown
+
+    recaptcha_settings.section:
+        label:  saurabhdhariwal.comments::lang.settings.section_recaptcha_label
+        type: section
+        comment:  saurabhdhariwal.comments::lang.settings.section_recaptcha_comments
+
+    recaptcha_enabled:
+        label: saurabhdhariwal.comments::lang.settings.recaptcha_label
+        commentAbove: saurabhdhariwal.comments::lang.settings.recaptcha_comment
+        type: switch
+
+    site_key:
+        label: saurabhdhariwal.comments::lang.settings.site_key_label
+        commentAbove: saurabhdhariwal.comments::lang.settings.site_key_comment
+        span: left
+        type: text
+    secret_key:
+        label: saurabhdhariwal.comments::lang.settings.secret_key_label
+        commentAbove: saurabhdhariwal.comments::lang.settings.secret_key_comment
+        span: right
+        type: text
+
+
+

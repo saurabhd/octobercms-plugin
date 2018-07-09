@@ -1,0 +1,11 @@
+plugin:
+    name: 'Comments'
+    description: 'saurabhdhariwal.comments::lang.plugin.description'
+    author: SaurabhDhariwal
+    icon: oc-icon-comments-o
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: 'saurabhdhariwal.comments::lang.comment.comments'
+        url: saurabhdhariwal/comments/comments
+        icon: icon-comments-o

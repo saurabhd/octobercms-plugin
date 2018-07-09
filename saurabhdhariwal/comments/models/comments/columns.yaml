@@ -1,0 +1,11 @@
+columns:
+    content:
+        label: 'saurabhdhariwal.comments::lang.comment.content'
+        type: text
+    status:
+        label: 'saurabhdhariwal.comments::lang.comment.status'
+        valueFrom: statusAdmin
+    url:
+        type: partial
+        path: ~/plugins/saurabhdhariwal/comments/models/comments/_url_column.htm
+

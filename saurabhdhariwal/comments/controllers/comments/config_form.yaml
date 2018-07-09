@@ -1,0 +1,11 @@
+name: Comments
+modelClass: SaurabhDhariwal\Comments\Models\Comments
+form: $/saurabhdhariwal/comments/models/comments/fields.yaml
+defaultRedirect: saurabhdhariwal/comments/comments
+create:
+    redirect: 'saurabhdhariwal/comments/comments/update/:id'
+    redirectClose: saurabhdhariwal/comments/comments
+update:
+    redirect: saurabhdhariwal/comments/comments
+    redirectClose: saurabhdhariwal/comments/comments
+preview: {  }

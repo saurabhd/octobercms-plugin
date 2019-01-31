@@ -140,13 +140,18 @@ class Comments extends ComponentBase
             $model->author = post('author');
             $model->email = post('email');
         } else {
-            $model->author = null;
-            $model->email = null;
-        }
+			if (Auth::check()) {
+				$user = Auth::getUser();
 
-        if (Auth::check()) {
-            $model->user_id = Auth::getUser()->id;
+				$model->author = $user->username;
+				$model->email = $user->email;
+				$model->user_id = $user->id;
+			} else {
+				$model->author = null;
+				$model->email = null;
+			}
         }
+        
         $model->status = Settings::get('status', 1);
         if ($model->save() && $model->status == 1) {
             return ['content' => $this->renderPartial('@list.htm', ['posts' => [$model]])];

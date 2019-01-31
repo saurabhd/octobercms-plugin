@@ -90,15 +90,15 @@ class Comments extends ComponentBase
      */
     public function onSaveCommentButton()
     {
-        $formValidation = [
-            'author' => 'alpha_dash|min:2|max:25',
-            'email' => 'email',
-            'content' => 'required|min:2|max:500'
-        ];
 
-        if (!Auth::check()) {
+        if (!Auth::check()) { // A user is NOT logged in
             $formValidation['email'] = 'required|email';
             $formValidation['author'] = 'required|alpha|min:2|max:25';
+            $formValidation['content'] = 'required|min:2|max:500';
+        }else{  // A user is logged in
+            // no need to check email or author 
+            // form.htm only shows comment field when user is logged in
+            $formValidation['content'] = 'required|min:2|max:500';
         }
 
         $validator = Validator::make(post(), $formValidation);

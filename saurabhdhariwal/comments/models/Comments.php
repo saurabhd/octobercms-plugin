@@ -27,11 +27,7 @@ class Comments extends Model
     /**
      * @var array
      */
-    public $rules = [
-            'author' => 'alpha|min:2|max:25',
-            'email' => 'email',
-            'content' => 'required|min:2|max:500'
-    ];
+    public $rules = [];
 
     /*
      * Disable timestamps by default.

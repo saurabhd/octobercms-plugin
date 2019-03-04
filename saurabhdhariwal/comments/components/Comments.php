@@ -91,8 +91,6 @@ class Comments extends ComponentBase
     public function onSaveCommentButton()
     {
         $formValidation = [
-            'author' => 'alpha_dash|min:2|max:25',
-            'email' => 'email',
             'content' => 'required|min:2|max:500'
         ];
 

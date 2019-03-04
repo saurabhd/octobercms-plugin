@@ -10,13 +10,13 @@ use System\Classes\PluginBase;
  */
 class Plugin extends PluginBase
 {
-
     public function pluginDetails() {
         return [
             'name' => 'Comments',
             'description' => 'Provides some really cool comments features.',
             'author' => 'Saurabh Dhariwal',
-            'icon' => 'icon-comments-o'
+            'icon' => 'icon-comments-o',
+            'homepage' => 'https://github.com/saurabhd/octobercms-plugin'
         ];
     }
 

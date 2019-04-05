@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Revision History
+
+# Model Form Field configuration
+form: $/saurabhdhariwal/revisionhistory/models/revisionhistory/fields.yaml
+
+# Model Class name
+modelClass: Saurabhdhariwal\Revisionhistory\Models\RevisionHistory
+
+# Default redirect location
+defaultRedirect: saurabhdhariwal/revisionhistory/revisionhistory
+
+# Create page
+create:
+    title: Create Revision History
+    redirect: saurabhdhariwal/revisionhistory/revisionhistory/update/:id
+    redirectClose: saurabhdhariwal/revisionhistory/revisionhistory
+
+# Update page
+update:
+    title: Edit Revision History
+    redirect: saurabhdhariwal/revisionhistory/revisionhistory
+    redirectClose: saurabhdhariwal/revisionhistory/revisionhistory
+
+# Preview page
+preview:
+    title: Preview Revision History

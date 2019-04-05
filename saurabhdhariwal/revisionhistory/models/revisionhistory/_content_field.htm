@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+$(function () {
+    $("#btnAdd").bind("click", function () {
+        var div = $("<div />");
+        div.html(GetDynamicTextBox(""));
+        $("#TextBoxContainer").append(div);
+    });
+    
+    $("body").on("click", ".remove", function () {
+        $(this).closest("div").remove();
+    });
+});
+function GetDynamicTextBox() {
+    return '<input name = "DynamicTextBox[]" type="text"/>&nbsp;' + '<input name = "DynamicTextBox1[]" type="text" />&nbsp;' +
+            '<input type="button" value="Remove" class="remove" />'
+}
+</script>
+</head>
+<body>
+<input id="btnAdd" type="button" value="Add" />
+<br />
+<br />
+<form data-request="onFilter" data-request-update="composant: '.results'">
+<div id="TextBoxContainer">
+    <!--Textboxes will be added here -->
+</div>
+<div class="field submit">
+    <button class="btn" type="submit">Envoyer</button>
+  </div>
+</form>
+</body>
+</html>

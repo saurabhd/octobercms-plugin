@@ -1,0 +1,178 @@
+
+<div class="w_revision_history">
+  <div class="d-flex">
+    <a id="btn-recordwise" href="#" class="btn btn-default">RecordWise Details</a>
+    <a id="btn-fieldwise" href="#" class="btn btn-default">FieldWise Details</a>
+  </div>
+  <ul>
+    <a data-toggle="modal" href="<?php echo url()->previous(); ?>" class="btn btn-primary btn-lg d-table active cls-back">Back</a><br>
+    <table class="table table-striped table-bordered table-hover" id="record-wise">
+      <thead>
+        <tr>
+          <th class="table-head">REVISION</th>
+          <th class="table-head">AUTHOREDBY</th>
+          <th class="table-head">REVERT</th>
+        </tr>
+      </thead>
+      <tbody>
+    <?php 
+    
+    foreach ($record_history as $record_info):
+      $created_at = $record_info['created_at'];
+      $timestamp = $record_info['timestamp'];
+      $username = $record_info['username'];
+      $fields = $record_info['fields']; 
+      
+      ?>
+      <tr>
+          <td><?php echo $created_at; ?></td>
+          <td><?php echo $username; ?></td>
+          <td><a data-toggle="modal" href="#history-revision-record-<?php echo $timestamp?>" class="btn btn-primary btn-lg d-table active">Revert</a></td>
+
+      </tr>
+      <li>
+          <!-- <a data-toggle="modal" href="#history-revision-record-<?php echo $timestamp?>">
+            <i class="list-icon icon-terminal"></i>
+            <span class="title"><?php echo $created_at; ?></span>
+            <span class="description"><?php echo $username; ?></span>
+            <span class="borders"></span>
+          </a> -->
+          <div class="control-popup modal fade" id="history-revision-record-<?php echo $timestamp?>" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header head">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title p-0">Revision History</h4>
+                    </div><?php 
+                    $revision_ids = '';
+                    foreach ($fields as $field_info): 
+                      $revision_ids .= $field_info['id'] . ",";
+                      ?><div class="modal-title">
+                          <?php echo $field_info['name']; ?>    
+                      </div>
+                      <div class="modal-body">
+                          <?php echo $field_info['diff']?>
+                      </div><?php 
+                    endforeach; 
+                    ?><div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"
+                        data-request="onRecordRevertHistory"
+                        data-request-data="model_name: '<?php echo $model_name; ?>',previous_url: '<?php echo $previous_url; ?>',record_id: <?php echo $record_id; ?>, revision_ids: '<?php echo $revision_ids; ?>'"
+                        data-request-flash
+                        data-dismiss="modal">Restore</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </li>
+    <?php endforeach; ?>
+    </tbody>
+    </table>
+  </ul>
+
+  <div id="field-wise">
+    <?php foreach ($fieldwise_history as $mainKey => $fieldwise_record): ?>
+      <div class="collapsePanel">
+        <a class="btn btn-primary" href="#"><?php echo $mainKey;?>
+          <img class="cls-plus" src="/plugins/saurabhdhariwal/revisionhistory/assets/img/plus.png" alt="plus icon" />
+          <img class="cls-minus" src="/plugins/saurabhdhariwal/revisionhistory/assets/img/minus.png" alt="minus icon" />
+        </a>
+      
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th class="table-head">REVISION</th>
+            <th class="table-head">AUTHOREDBY</th>
+            <th class="table-head">REVERT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($fieldwise_record as $record): ?>
+            <tr>
+                <td><?php echo $mainKey . ' modified on ' . $record['created_at']?></td>
+                <td><?php echo $record['username']?></td>
+                <td><a data-toggle="modal" href="#history-revision-<?php echo $record['id']?>" class="btn btn-primary btn-lg d-table active">Revert</a></td>
+
+            </tr>
+
+            
+              <div class="control-popup modal fade" id="history-revision-<?php echo $record['id']?>" tabindex="-1" role="dialog">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                          
+                          <div class="modal-header head">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                              <h4 class="modal-title p-0">Revision History</h4>
+                          </div>
+                          <div class="modal-title">
+                              <?php echo $mainKey; ?>    
+                          </div>
+                          <div class="modal-body">
+                              <?php echo $record['diff']?>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="submit" class="btn btn-primary"
+                              data-request="onRevertHistory"
+                              data-request-data="model_name: '<?php echo $model_name; ?>',previous_url: '<?php echo $previous_url; ?>',record_id: <?php echo $record_id?>,revision_id: <?php echo $record['id']?>"
+                              data-request-flash
+                              data-dismiss="modal">Restore</button>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                          </div>
+
+
+                      </div>
+                  </div>
+              </div>
+            
+
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+      </div>
+    <?php endforeach; ?>
+    
+  </div>
+  <a data-toggle="modal" href="<?php echo url()->previous(); ?>" class="btn btn-primary btn-lg d-table active cls-back">Back</a>
+</div>
+<script>
+  $(document).ready(function(){
+    $(this).find(".cls-minus").hide();
+    $(this).find(".cls-plus").show();  
+    $("#record-wise").show();
+    $("#field-wise").hide();
+    $("#field-wise").css("margin-bottom", "20px");
+    $(".collapsePanel").find("table").addClass("hide");
+    $(".collapsePanel").css("margin-bottom","20px");
+    $("#btn-recordwise").addClass("active");
+    $("#btn-recordwise").click(function(){
+      $("#record-wise").show();
+      $("#field-wise").hide();
+      $("#btn-recordwise,#btn-fieldwise").removeClass("active");
+      $(this).addClass("active");
+    });
+    $("#btn-fieldwise").click(function(){
+      $("#record-wise").hide();
+      $("#field-wise").show();
+      $("#btn-recordwise,#btn-fieldwise").removeClass("active");
+      $(this).addClass("active");
+    });
+    $(".collapsePanel > a").click(function(){
+      
+      if($(this).parent().find("table").hasClass("hide")){
+        $(".collapsePanel").find("table").addClass("hide");
+        $(".collapsePanel > a").find(".cls-minus").hide();
+        $(".collapsePanel > a").find(".cls-plus").show();
+        $(this).parent().find("table").toggleClass("hide");  
+        $(this).find(".cls-minus").show();
+        $(this).find(".cls-plus").hide();      
+      }
+      else{
+        $(this).parent().find("table").toggleClass("hide"); 
+        $(this).find(".cls-minus").hide();
+        $(this).find(".cls-plus").show();
+      }
+
+    })
+  });
+</script>

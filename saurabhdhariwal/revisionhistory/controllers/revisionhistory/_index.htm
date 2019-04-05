@@ -1,0 +1,87 @@
+
+<div class="w_revision_history">
+  <ul><?php 
+    foreach ($record_history as $record_info):
+      $created_at = $record_info['created_at'];
+      $timestamp = $record_info['timestamp'];
+      $username = $record_info['username'];
+      $fields = $record_info['fields']; 
+      ?><li>
+          <a data-toggle="modal" href="#history-revision-record-<?php echo $timestamp?>">
+            <i class="list-icon icon-terminal"></i>
+            <span class="title"><?php echo $created_at; ?></span>
+            <span class="description"><?php echo $username; ?></span>
+            <span class="borders"></span>
+          </a>
+          <div class="control-popup modal fade" id="history-revision-record-<?php echo $timestamp?>" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Title</h4>
+                    </div><?php 
+                    $revision_ids = '';
+                    foreach ($fields as $field_info): 
+                      $revision_ids .= $field_info['id'] . ",";
+                      ?><div class="modal-title">
+                          <?php echo $field_info['name']; ?>    
+                      </div>
+                      <div class="modal-body">
+                          <?php echo $field_info['diff']?>
+                      </div><?php 
+                    endforeach; 
+                    ?><div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"
+                        data-request="onRecordRevertHistory"
+                        data-request-data="record_id: <?php echo $record_id; ?>, revision_ids: '<?php echo $revision_ids; ?>'"
+                        data-request-flash
+                        data-dismiss="modal">Restore</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </li>
+    <?php endforeach; ?>
+  </ul>
+
+  <ul>
+    <?php foreach ($history->reverse() as $record): ?>
+      <li>
+        <a data-toggle="modal" href="#history-revision-<?php echo $record['id']?>">
+          <i class="list-icon icon-terminal"></i>
+          <span class="title"><?php echo $record['field'] . ' modified on ' . $record['created_at']?></span>
+          <span class="description"><?php echo $record->user->first_name?> <?php echo $record->user->last_name?></span>
+          <span class="borders"></span>
+        </a>
+
+        <div class="control-popup modal fade" id="history-revision-<?php echo $record['id']?>" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Title</h4>
+                    </div>
+                    <div class="modal-title">
+                        <?php echo $record->field; ?>    
+                    </div>
+                    <div class="modal-body">
+                        <?php echo $record->getDiff()?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"
+                        data-request="onRevertHistory"
+                        data-request-data="record_id: <?php echo $record_id?>,revision_id: <?php echo $record['id']?>"
+                        data-request-flash
+                        data-dismiss="modal">Restore</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </li>
+
+    <?php endforeach; ?>
+  </ul>
+</div>
+

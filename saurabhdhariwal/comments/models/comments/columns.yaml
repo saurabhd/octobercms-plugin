@@ -4,8 +4,10 @@ columns:
         type: text
     status:
         label: 'saurabhdhariwal.comments::lang.comment.status'
-        valueFrom: statusAdmin
+        type: partial
+        path: ~/plugins/saurabhdhariwal/comments/models/comments/_status.htm
     url:
         type: partial
         path: ~/plugins/saurabhdhariwal/comments/models/comments/_url_column.htm
 
+_status.htm_status.htm

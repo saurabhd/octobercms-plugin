@@ -1,0 +1,9 @@
+<?php
+
+$class = [
+    1 => 'text-success',
+    2 => 'text-warning',
+    3 => 'text-danger'
+];
+
+echo '<span class="oc-icon-circle '.$class[$record->status].'">'.Lang::get('saurabhdhariwal.comments::lang.comment.status_'.strtolower($record->statusAdmin)).'</span>';

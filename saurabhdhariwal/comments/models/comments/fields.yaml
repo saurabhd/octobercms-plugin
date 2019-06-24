@@ -7,8 +7,9 @@ fields:
         type: richeditor
     status:
         label: 'saurabhdhariwal.comments::lang.comment.status'
-        oc.commentPosition: ''
-        nameFrom: name
-        descriptionFrom: description
+        options:
+            1: saurabhdhariwal.comments::lang.comment.status_approved
+            2: saurabhdhariwal.comments::lang.comment.status_pending
+            3: saurabhdhariwal.comments::lang.comment.status_spam
         span: left
         type: dropdown

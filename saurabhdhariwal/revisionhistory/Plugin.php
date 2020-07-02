@@ -52,7 +52,7 @@ class Plugin extends PluginBase
     {
 
         return [
-            'Saurabhdhariwal\Revisionhistory\Components\MyComponent' => 'myComponent',
+        
         ];
     }
 }

@@ -1,4 +1,8 @@
 columns:
+    author:
+        label: Autor
+    email:
+        label: Email
     content:
         label: 'saurabhdhariwal.comments::lang.comment.content'
         type: text

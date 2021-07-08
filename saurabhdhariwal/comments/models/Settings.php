@@ -36,7 +36,9 @@ class Settings extends Model
      */
     public function getStatusOptions($keyValue = null)
     {
-        return Comments::STATUS;
+        return array_map(function($v) {
+            return 'saurabhdhariwal.comments::lang.comment.status_'.strtolower($v);
+        },Comments::STATUS);
     }
 
 }

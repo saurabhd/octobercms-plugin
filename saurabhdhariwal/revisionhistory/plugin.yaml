@@ -1,0 +1,10 @@
+plugin:
+    name: revisionhistory
+    description: 'No description provided yet...'
+    author: Saurabh Dhariwal
+    icon: icon-leaf
+navigation:
+    # revisionhistory:
+    #     label: revisionhistory
+    #     url: saurabhdhariwal/revisionhistory/revisionhistory
+    #     icon: icon-leaf

@@ -11,6 +11,10 @@ return [
         'content' => 'Content',
         'status' => 'Status',
         'comments' => 'Comments',
+        'status_approved' => 'Approved',
+        'status_pending' => 'Pending',
+        'status_spam' => 'Spam',
+
     ],
     'settings' => [
         'allow_guest_label' => 'Allow Guest',

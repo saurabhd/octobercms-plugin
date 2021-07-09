@@ -32,8 +32,8 @@ class Plugin extends PluginBase
      */
     public function registerComponents()
     {
-        // return [
-        //     'Saurabhdhariwal\Revisionhistory\Components\MyComponent' => 'myComponent',
-        // ];
+        return [
+        
+        ];
     }
 }
